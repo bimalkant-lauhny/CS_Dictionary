@@ -28,3 +28,4 @@ for li in alpha_list:
         cursor.execute('''insert into term_def values ("%s","%s")''' %(term,defn))
 
 connection.commit()
+connection.close()

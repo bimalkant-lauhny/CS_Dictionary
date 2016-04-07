@@ -15,25 +15,27 @@ class App:
         self.entry = Tkinter.Entry(self.frame,highlightbackground="blue",highlightcolor="red",textvariable=self.search_var)
         self.entry.grid(row=0,column=0,ipadx=5,ipady=5,padx=20,pady=20)
 
-        self.btn = Tkinter.Button(self.frame, text="Search",fg="Green", command=self.frame.quit)
+        self.btn = Tkinter.Button(self.frame, text="Search",fg="Green", command=self.fetch_res)
         self.btn.grid(row=0,column=1,ipadx=3,ipady=3,padx=20,pady=20)
 
         self.check_var = Tkinter.IntVar()
         self.check_btn = Tkinter.Checkbutton(self.frame, text="Enable Advanced Search", variable = self.check_var,font=("Ubuntu","12",""),command=self.cb)
         self.check_btn.grid(row=0,column=2,padx=20,pady=20)
 
-        inp_text=""
-        for i in range(1000):
-            inp_text+= (str(i)+"\n")
-
         self.scrollbar = Tkinter.Scrollbar(self.frame2)
         self.scrollbar.pack(side=Tkinter.RIGHT, fill=Tkinter.Y)
 
         self.res_area  = Tkinter.Text(self.frame2,yscrollcommand=self.scrollbar.set,bg="yellow",bd=2)
-        for i in range(1000):
-            self.res_area.insert(Tkinter.END, str(i)+"\n")
         self.res_area.pack(side=Tkinter.LEFT,fill=Tkinter.BOTH)
         #self.res_area.grid(row=0,column=0,columnspan=3)
+
+    def fetch_res(self):
+        self.results = query_retrieval.main(self.check_var.get(),self.search_var.get())
+        self.res_area.delete(1.0, Tkinter.END)
+        print self.results
+        self.res_area.insert(Tkinter.END,"\n\n")
+        for i in self.results:
+            self.res_area.insert(Tkinter.END, str(i[1])+"\n\n")
         '''
         self.res_area  = Tkinter.Listbox(self.frame2,yscrollcommand=self.scrollbar.set,bg="yellow",bd=2)
         for i in range(1000):
