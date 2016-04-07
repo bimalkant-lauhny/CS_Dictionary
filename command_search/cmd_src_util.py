@@ -15,7 +15,7 @@ def regexp(expr,item):
     reg = re.compile(expr)
     return reg.search(item) is not None
 
-mydb = sqlite3.connect("db_gen/cs_terms.db")
+mydb = sqlite3.connect("../db_gen/cs_terms.db")
 mydb.create_function("REGEXP", 2, regexp)
 cur = mydb.cursor()
 

@@ -27,8 +27,7 @@ for record in results:
     print record
 '''
 
-regex = '''"^%s"'''%(args[0])
-cur.execute('select * from %s where term REGEXP %s' %(options.table,regex))
+cur.execute('select * from %s where term REGEXP "%s"' %(options.table,args[0]))
 results = cur.fetchall()
 
 if options.outfile:
