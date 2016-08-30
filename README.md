@@ -23,4 +23,4 @@ Tested on Ubuntu 15.10 and works perfectly.
 Command to run Dictionary: 
 - python __main__.py
 
-Feel free to report sssues, suggest modifications, addition of terms and definitions.
+Feel free to report issues, suggest modifications, addition of terms and definitions.
